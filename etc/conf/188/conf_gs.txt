@@ -1,0 +1,15 @@
+{	
+	"tcp_port":7011, 
+	"game_service" : {
+		"gameId" : "DN-7",
+		"account" : {
+			"PimplUrl": "build/lib/libdnasp.so",
+			"PimplVersion": "1.0",
+			"Pimpl":
+			{
+				"account_conf_path":"etc/account/account.txt"
+			}
+		} 
+	}
+
+}

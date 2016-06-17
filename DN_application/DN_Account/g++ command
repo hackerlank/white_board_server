@@ -1,0 +1,1 @@
+g++ -shared -fPIC -std=c++11 -O3  -g -ggdb  -o libdnasp.so dn_account_service_pimpl_app.cpp dn_account_service_pimpl.cpp DN_player_def.cpp dn_player_session.cpp dn_poker.cpp  -I../../game_base/account/source -I../../framework/base -I../../game_base/account -I../../game_base/task -I../../framework/server

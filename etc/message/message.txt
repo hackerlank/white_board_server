@@ -1,0 +1,24 @@
+{
+	"get_mail_list_interval" : 60,
+	"max_item_in_one_mail":5,
+	"Broadcast_StartUp" : {
+		"message_count" : 1,
+		"message_1" : "了解最新动态，加入官方QQ群： 99203668"
+	},
+	"Broadcast_TimeCycle" : {
+		"time_cycle" : 240,
+		"message_count" : 3,
+        "message_1" : "本月开始对色情头像用户进行整治，请大家在检查前，将有问题的头像更换，情节严重者将封号处理!",
+		"message_2" : "月底疯狂送币行动！百人场海量彩金加不停！详情见活动公告！",
+		"message_3" : "温暖如初冲榜有豪礼，每日返利好福利~！详情见活动公告！"
+	},
+	"Broadcast_Condition" : {
+		"player_win_money_more_than" : 200000,
+		"player_win_money_more_than_message"  :"恭喜 %s 单局赢取 %d！",
+		"before_championship_start_message"  : "万人锦标赛%d分钟之后即将开赛啦！丰厚的比赛奖励等着您，快来比赛吧！",
+		"when_championship_start_message"  : "万人锦标赛开赛啦！快来比赛吧！",
+		"championship_awarding_first_message"  : "恭喜 %s 在万人锦标赛中拔得头筹，获得 %d奖励！",
+		"championship_awarding_second_to_fifth_message"  : "恭喜 %s 在万人锦标赛中获得第%d名，获得 %d奖励！"
+	},
+	"sys_message_config_path":"etc/message/sys_message.txt"
+}

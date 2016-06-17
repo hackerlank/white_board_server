@@ -1,0 +1,18 @@
+{
+	"character_info_max_dirty_time" : 5,
+	"player_unactive_time": 900,
+	"spree_rate" : 1,
+	"spree_sum_limit":9999999,
+	"reward_invite" : 0,
+	"reward_invited" : 0,
+	"max_invite_count" : 2,
+	"guaranteeMoney":5000,
+	"guaranteeTimes":2,
+	"invite_sms" : "我正在玩最真实、刺激、美女如云的手机游戏天天斗牛，推荐你也一起来玩，输入我的推荐码%RecommentCode=%免费赠送2万金币，下载地址http://*********",
+	"title_info_path" : "etc/account/Title.csv",	
+	"avatarUrl":"http://avatar-30.starfieldgame.com/upload?gsurl=http%3A%2F%2F10.132.34.1%3A8011/account/avatar",
+	"uninstallUrl":"http://feedback.starfieldgame.com/uninstall/index.php",
+	"downloadUrl":"dtzy.wanyou360.com/dn",
+	"supportQQ":"366975998",
+	"supportTel":"4000798577"
+}
