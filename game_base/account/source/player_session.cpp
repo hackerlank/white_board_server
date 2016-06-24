@@ -8,7 +8,6 @@
 #include "WhiteBoardMessage.pb.h"
 #include "RoomOperate.pb.h"
 #include "ErrorResp.pb.h"
-
 #include "room.h"
 #include "room_manager.h"
 #include <rapidjson/stringbuffer.h>
@@ -221,6 +220,7 @@ void PlayerSession::PlayerDeleteRoom(const std::string& room_key){
 void PlayerSession::PlayerLeaveRoom(){
 	if(room_!=nullptr){
 		room_->LeaveRoom(this);
+		SendErrorToClient(shape_Room_Operation_Success, ProtoBuff_Room_Operate, SUCCESS_ROOM_OPERATION);
 	}else{
 		SendErrorToClient(Shape_Leave_When_not_In_Room,ProtoBuff_Room_Operate,ERROR_NOT_IN_ROOM);
 		LOG(ERROR) << "[PlayerSession::PlayerLeaveRoom] leave but not in any_room :" << GetSessionId();		

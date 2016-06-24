@@ -52,7 +52,7 @@ void Room::LeaveRoom(PlayerSession* session){
 		}
 	}
 	if(GetPlayerSize()==0){// 房间为空 1小时后可以删除
-		can_delete_time_ = time(nullptr) +60;
+		can_delete_time_ = time(nullptr) +3600;
 	}
 }
 
@@ -123,18 +123,26 @@ int32_t Room::PlayerAddShape(PlayerSession* session,const ProtobufTranscode& req
 		}
 		WhiteBoardMessage* req = req_list.mutable_shapeobject(0);
 		shape_id =  req->shapeid();	
-		
+		std::string type = req->shapetype();
+		uint32_t datasize, propsize;
+		datasize = propsize = 0;
+		if (req->has_shapedata()) {
+			datasize += req->shapedata().size();
+		}
+	    if (req->has_shapeproperty()) {
+			propsize += req->shapeproperty().size();
+		}
 		auto it = shape_object_.find(shape_id);
 		if(it != shape_object_.end()){
 			it->second =  req->SerializeAsString();
-			LOG(INFO) <<"[Room::AddShape] change shape , id = " << shape_id;
+			LOG(INFO) <<"[Room::AddShape] change shape , id = " << shape_id << ", type = " << type << ", datasize = " << datasize << ", propsize = " << propsize;
 		}else{
 			//添加一个对象
 			shape_id = shape_max_id_;
 			req->set_shapeid(shape_id);
 			shape_object_.insert(std::make_pair(shape_id,req->SerializeAsString()));
 			shape_max_id_++;
-			LOG(INFO) << "[Room::AddShape] add shape,id = " << shape_id;
+			LOG(INFO) << "[Room::AddShape] add shape,id = " << shape_id  << ", type = " << type << ", datasize = " << datasize << ", propsize = " << propsize ;
 		}
 
 		BroadCast(ProtobufTranscode(ProtoBuff_Add_Sharp,req_list.SerializeAsString()));

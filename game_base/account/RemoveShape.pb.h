@@ -88,15 +88,29 @@ class RemoveShape : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
-  // optional uint32 shapeID = 1;
+  // optional string msgid = 1;
+  inline bool has_msgid() const;
+  inline void clear_msgid();
+  static const int kMsgidFieldNumber = 1;
+  inline const ::std::string& msgid() const;
+  inline void set_msgid(const ::std::string& value);
+  inline void set_msgid(const char* value);
+  inline void set_msgid(const char* value, size_t size);
+  inline ::std::string* mutable_msgid();
+  inline ::std::string* release_msgid();
+  inline void set_allocated_msgid(::std::string* msgid);
+
+  // optional uint32 shapeID = 2;
   inline bool has_shapeid() const;
   inline void clear_shapeid();
-  static const int kShapeIDFieldNumber = 1;
+  static const int kShapeIDFieldNumber = 2;
   inline ::google::protobuf::uint32 shapeid() const;
   inline void set_shapeid(::google::protobuf::uint32 value);
 
   // @@protoc_insertion_point(class_scope:RemoveShape)
  private:
+  inline void set_has_msgid();
+  inline void clear_has_msgid();
   inline void set_has_shapeid();
   inline void clear_has_shapeid();
 
@@ -104,6 +118,7 @@ class RemoveShape : public ::google::protobuf::Message {
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
+  ::std::string* msgid_;
   ::google::protobuf::uint32 shapeid_;
   friend void  protobuf_AddDesc_RemoveShape_2eproto();
   friend void protobuf_AssignDesc_RemoveShape_2eproto();
@@ -119,15 +134,91 @@ class RemoveShape : public ::google::protobuf::Message {
 
 // RemoveShape
 
-// optional uint32 shapeID = 1;
-inline bool RemoveShape::has_shapeid() const {
+// optional string msgid = 1;
+inline bool RemoveShape::has_msgid() const {
   return (_has_bits_[0] & 0x00000001u) != 0;
 }
-inline void RemoveShape::set_has_shapeid() {
+inline void RemoveShape::set_has_msgid() {
   _has_bits_[0] |= 0x00000001u;
 }
-inline void RemoveShape::clear_has_shapeid() {
+inline void RemoveShape::clear_has_msgid() {
   _has_bits_[0] &= ~0x00000001u;
+}
+inline void RemoveShape::clear_msgid() {
+  if (msgid_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    msgid_->clear();
+  }
+  clear_has_msgid();
+}
+inline const ::std::string& RemoveShape::msgid() const {
+  // @@protoc_insertion_point(field_get:RemoveShape.msgid)
+  return *msgid_;
+}
+inline void RemoveShape::set_msgid(const ::std::string& value) {
+  set_has_msgid();
+  if (msgid_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    msgid_ = new ::std::string;
+  }
+  msgid_->assign(value);
+  // @@protoc_insertion_point(field_set:RemoveShape.msgid)
+}
+inline void RemoveShape::set_msgid(const char* value) {
+  set_has_msgid();
+  if (msgid_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    msgid_ = new ::std::string;
+  }
+  msgid_->assign(value);
+  // @@protoc_insertion_point(field_set_char:RemoveShape.msgid)
+}
+inline void RemoveShape::set_msgid(const char* value, size_t size) {
+  set_has_msgid();
+  if (msgid_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    msgid_ = new ::std::string;
+  }
+  msgid_->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:RemoveShape.msgid)
+}
+inline ::std::string* RemoveShape::mutable_msgid() {
+  set_has_msgid();
+  if (msgid_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    msgid_ = new ::std::string;
+  }
+  // @@protoc_insertion_point(field_mutable:RemoveShape.msgid)
+  return msgid_;
+}
+inline ::std::string* RemoveShape::release_msgid() {
+  clear_has_msgid();
+  if (msgid_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    return NULL;
+  } else {
+    ::std::string* temp = msgid_;
+    msgid_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    return temp;
+  }
+}
+inline void RemoveShape::set_allocated_msgid(::std::string* msgid) {
+  if (msgid_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    delete msgid_;
+  }
+  if (msgid) {
+    set_has_msgid();
+    msgid_ = msgid;
+  } else {
+    clear_has_msgid();
+    msgid_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  }
+  // @@protoc_insertion_point(field_set_allocated:RemoveShape.msgid)
+}
+
+// optional uint32 shapeID = 2;
+inline bool RemoveShape::has_shapeid() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void RemoveShape::set_has_shapeid() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void RemoveShape::clear_has_shapeid() {
+  _has_bits_[0] &= ~0x00000002u;
 }
 inline void RemoveShape::clear_shapeid() {
   shapeid_ = 0u;

@@ -37,7 +37,7 @@ void RoomManager::PlayerDeleteRoom(const std::string & room_key,PlayerSession* s
 		session->SendErrorToClient(Shape_Delete_Room_Not_Exist,ProtoBuff_Room_Operate,ERROR_DELETE_ROOM_NOT_EXIST);
 	}else{
 		it->second->ForceDeleteRoom();
-		
+		session->SendErrorToClient(shape_Room_Operation_Success, ProtoBuff_Room_Operate, SUCCESS_ROOM_OPERATION);		
 	}
 }
 
@@ -67,6 +67,7 @@ void RoomManager::PlayerCreateRoom(const std::string &room_key,PlayerSession* se
 	}else{
 		CreateRoom(room_key);
 		BroadCastRoomList();
+		session->SendErrorToClient(shape_Room_Operation_Success, ProtoBuff_Room_Operate, SUCCESS_ROOM_OPERATION);
 	}
 }
 
@@ -86,6 +87,7 @@ void RoomManager::PlayerEnterRoom(const std::string &room_key,PlayerSession* ses
 		session->SendErrorToClient(Shape_Enter_Room_Not_Exist,ProtoBuff_Room_Operate,ERROR_ENTER_ROOM_NOT_EXIST);
 	}else{
 		it->second->EnterRoom(session);
+		session->SendErrorToClient(shape_Room_Operation_Success, ProtoBuff_Room_Operate, SUCCESS_ROOM_OPERATION);
 	}
 }
 
@@ -104,6 +106,7 @@ void RoomManager::PlayerCopyRoom(const std::string &room_key_src,
 	Room* room_des = CopyRoom(room_key_src,room_key_des);
 	rooms_.insert(std::make_pair(room_key_des,room_des));
 	BroadCastRoomList();
+	session->SendErrorToClient(shape_Room_Operation_Success, ProtoBuff_Room_Operate, SUCCESS_ROOM_OPERATION);
 }
 
 Room* RoomManager::CopyRoom(const std::string& room_src_key,const std::string &room_des_key){
@@ -121,6 +124,7 @@ void RoomManager::Update(){
 			delete it->second;
 			it->second=nullptr;
 			it = rooms_.erase(it);	
+			BroadCastRoomList();
 		}else{
 			it++;
 		}

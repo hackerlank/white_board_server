@@ -24,6 +24,7 @@
 #define ERROR_SYNC_PLAYER_LIST_NO_ROOOM ("ask player list ,room not exist")
 #define ERROR_DELETE_ROOM_NOT_EXIST ("delete room not exist")
 #define ERROR_ROOM_DELET ("the room you in has been delete,you quit")
+#define SUCCESS_ROOM_OPERATION ("room operation success")
 
 enum ShapeErrorCode{
 	Shape_Common_Error,	//通常错误
@@ -39,6 +40,7 @@ enum ShapeErrorCode{
 	Shape_Sync_Player_List_No_Room, //请求的房间的人列表,但是房间不存在
 	Shape_Delete_Room_Not_Exist,//删除的房间不存在
 	Shape_Room_Delete_You_Out,//房间被删除,你被剔除房间
+	shape_Room_Operation_Success,	//房间行为成功
 };
 
 enum AccountOpcode {

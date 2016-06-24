@@ -213,10 +213,22 @@ class WhiteBoardMessageList : public ::google::protobuf::Message {
 
   // accessors -------------------------------------------------------
 
-  // repeated .WhiteBoardMessage ShapeObject = 1;
+  // optional string msgid = 1;
+  inline bool has_msgid() const;
+  inline void clear_msgid();
+  static const int kMsgidFieldNumber = 1;
+  inline const ::std::string& msgid() const;
+  inline void set_msgid(const ::std::string& value);
+  inline void set_msgid(const char* value);
+  inline void set_msgid(const char* value, size_t size);
+  inline ::std::string* mutable_msgid();
+  inline ::std::string* release_msgid();
+  inline void set_allocated_msgid(::std::string* msgid);
+
+  // repeated .WhiteBoardMessage ShapeObject = 2;
   inline int shapeobject_size() const;
   inline void clear_shapeobject();
-  static const int kShapeObjectFieldNumber = 1;
+  static const int kShapeObjectFieldNumber = 2;
   inline const ::WhiteBoardMessage& shapeobject(int index) const;
   inline ::WhiteBoardMessage* mutable_shapeobject(int index);
   inline ::WhiteBoardMessage* add_shapeobject();
@@ -227,11 +239,14 @@ class WhiteBoardMessageList : public ::google::protobuf::Message {
 
   // @@protoc_insertion_point(class_scope:WhiteBoardMessageList)
  private:
+  inline void set_has_msgid();
+  inline void clear_has_msgid();
 
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
 
   ::google::protobuf::uint32 _has_bits_[1];
   mutable int _cached_size_;
+  ::std::string* msgid_;
   ::google::protobuf::RepeatedPtrField< ::WhiteBoardMessage > shapeobject_;
   friend void  protobuf_AddDesc_WhiteBoardMessage_2eproto();
   friend void protobuf_AssignDesc_WhiteBoardMessage_2eproto();
@@ -503,7 +518,83 @@ inline void WhiteBoardMessage::set_allocated_shapeproperty(::std::string* shapep
 
 // WhiteBoardMessageList
 
-// repeated .WhiteBoardMessage ShapeObject = 1;
+// optional string msgid = 1;
+inline bool WhiteBoardMessageList::has_msgid() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void WhiteBoardMessageList::set_has_msgid() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void WhiteBoardMessageList::clear_has_msgid() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void WhiteBoardMessageList::clear_msgid() {
+  if (msgid_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    msgid_->clear();
+  }
+  clear_has_msgid();
+}
+inline const ::std::string& WhiteBoardMessageList::msgid() const {
+  // @@protoc_insertion_point(field_get:WhiteBoardMessageList.msgid)
+  return *msgid_;
+}
+inline void WhiteBoardMessageList::set_msgid(const ::std::string& value) {
+  set_has_msgid();
+  if (msgid_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    msgid_ = new ::std::string;
+  }
+  msgid_->assign(value);
+  // @@protoc_insertion_point(field_set:WhiteBoardMessageList.msgid)
+}
+inline void WhiteBoardMessageList::set_msgid(const char* value) {
+  set_has_msgid();
+  if (msgid_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    msgid_ = new ::std::string;
+  }
+  msgid_->assign(value);
+  // @@protoc_insertion_point(field_set_char:WhiteBoardMessageList.msgid)
+}
+inline void WhiteBoardMessageList::set_msgid(const char* value, size_t size) {
+  set_has_msgid();
+  if (msgid_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    msgid_ = new ::std::string;
+  }
+  msgid_->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:WhiteBoardMessageList.msgid)
+}
+inline ::std::string* WhiteBoardMessageList::mutable_msgid() {
+  set_has_msgid();
+  if (msgid_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    msgid_ = new ::std::string;
+  }
+  // @@protoc_insertion_point(field_mutable:WhiteBoardMessageList.msgid)
+  return msgid_;
+}
+inline ::std::string* WhiteBoardMessageList::release_msgid() {
+  clear_has_msgid();
+  if (msgid_ == &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    return NULL;
+  } else {
+    ::std::string* temp = msgid_;
+    msgid_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+    return temp;
+  }
+}
+inline void WhiteBoardMessageList::set_allocated_msgid(::std::string* msgid) {
+  if (msgid_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    delete msgid_;
+  }
+  if (msgid) {
+    set_has_msgid();
+    msgid_ = msgid;
+  } else {
+    clear_has_msgid();
+    msgid_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  }
+  // @@protoc_insertion_point(field_set_allocated:WhiteBoardMessageList.msgid)
+}
+
+// repeated .WhiteBoardMessage ShapeObject = 2;
 inline int WhiteBoardMessageList::shapeobject_size() const {
   return shapeobject_.size();
 }

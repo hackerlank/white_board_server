@@ -53,7 +53,8 @@ void protobuf_AssignDesc_WhiteBoardMessage_2eproto() {
       ::google::protobuf::MessageFactory::generated_factory(),
       sizeof(WhiteBoardMessage));
   WhiteBoardMessageList_descriptor_ = file->message_type(1);
-  static const int WhiteBoardMessageList_offsets_[1] = {
+  static const int WhiteBoardMessageList_offsets_[2] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(WhiteBoardMessageList, msgid_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(WhiteBoardMessageList, shapeobject_),
   };
   WhiteBoardMessageList_reflection_ =
@@ -104,8 +105,9 @@ void protobuf_AddDesc_WhiteBoardMessage_2eproto() {
     "\n\027WhiteBoardMessage.proto\"a\n\021WhiteBoardM"
     "essage\022\017\n\007shapeID\030\001 \001(\r\022\021\n\tshapeType\030\002 \001"
     "(\t\022\021\n\tshapeData\030\003 \001(\014\022\025\n\rshapeProperty\030\004"
-    " \001(\014\"@\n\025WhiteBoardMessageList\022\'\n\013ShapeOb"
-    "ject\030\001 \003(\0132\022.WhiteBoardMessage", 190);
+    " \001(\014\"O\n\025WhiteBoardMessageList\022\r\n\005msgid\030\001"
+    " \001(\t\022\'\n\013ShapeObject\030\002 \003(\0132\022.WhiteBoardMe"
+    "ssage", 205);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "WhiteBoardMessage.proto", &protobuf_RegisterTypes);
   WhiteBoardMessage::default_instance_ = new WhiteBoardMessage();
@@ -503,6 +505,7 @@ void WhiteBoardMessage::Swap(WhiteBoardMessage* other) {
 // ===================================================================
 
 #ifndef _MSC_VER
+const int WhiteBoardMessageList::kMsgidFieldNumber;
 const int WhiteBoardMessageList::kShapeObjectFieldNumber;
 #endif  // !_MSC_VER
 
@@ -523,7 +526,9 @@ WhiteBoardMessageList::WhiteBoardMessageList(const WhiteBoardMessageList& from)
 }
 
 void WhiteBoardMessageList::SharedCtor() {
+  ::google::protobuf::internal::GetEmptyString();
   _cached_size_ = 0;
+  msgid_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -533,6 +538,9 @@ WhiteBoardMessageList::~WhiteBoardMessageList() {
 }
 
 void WhiteBoardMessageList::SharedDtor() {
+  if (msgid_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    delete msgid_;
+  }
   if (this != default_instance_) {
   }
 }
@@ -559,6 +567,11 @@ WhiteBoardMessageList* WhiteBoardMessageList::New() const {
 }
 
 void WhiteBoardMessageList::Clear() {
+  if (has_msgid()) {
+    if (msgid_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+      msgid_->clear();
+    }
+  }
   shapeobject_.Clear();
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   mutable_unknown_fields()->Clear();
@@ -574,16 +587,32 @@ bool WhiteBoardMessageList::MergePartialFromCodedStream(
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // repeated .WhiteBoardMessage ShapeObject = 1;
+      // optional string msgid = 1;
       case 1: {
         if (tag == 10) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_msgid()));
+          ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+            this->msgid().data(), this->msgid().length(),
+            ::google::protobuf::internal::WireFormat::PARSE,
+            "msgid");
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(18)) goto parse_ShapeObject;
+        break;
+      }
+
+      // repeated .WhiteBoardMessage ShapeObject = 2;
+      case 2: {
+        if (tag == 18) {
          parse_ShapeObject:
           DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
                 input, add_shapeobject()));
         } else {
           goto handle_unusual;
         }
-        if (input->ExpectTag(10)) goto parse_ShapeObject;
+        if (input->ExpectTag(18)) goto parse_ShapeObject;
         if (input->ExpectAtEnd()) goto success;
         break;
       }
@@ -613,10 +642,20 @@ failure:
 void WhiteBoardMessageList::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:WhiteBoardMessageList)
-  // repeated .WhiteBoardMessage ShapeObject = 1;
+  // optional string msgid = 1;
+  if (has_msgid()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+      this->msgid().data(), this->msgid().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
+      "msgid");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      1, this->msgid(), output);
+  }
+
+  // repeated .WhiteBoardMessage ShapeObject = 2;
   for (int i = 0; i < this->shapeobject_size(); i++) {
     ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-      1, this->shapeobject(i), output);
+      2, this->shapeobject(i), output);
   }
 
   if (!unknown_fields().empty()) {
@@ -629,11 +668,22 @@ void WhiteBoardMessageList::SerializeWithCachedSizes(
 ::google::protobuf::uint8* WhiteBoardMessageList::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
   // @@protoc_insertion_point(serialize_to_array_start:WhiteBoardMessageList)
-  // repeated .WhiteBoardMessage ShapeObject = 1;
+  // optional string msgid = 1;
+  if (has_msgid()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+      this->msgid().data(), this->msgid().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
+      "msgid");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        1, this->msgid(), target);
+  }
+
+  // repeated .WhiteBoardMessage ShapeObject = 2;
   for (int i = 0; i < this->shapeobject_size(); i++) {
     target = ::google::protobuf::internal::WireFormatLite::
       WriteMessageNoVirtualToArray(
-        1, this->shapeobject(i), target);
+        2, this->shapeobject(i), target);
   }
 
   if (!unknown_fields().empty()) {
@@ -647,7 +697,16 @@ void WhiteBoardMessageList::SerializeWithCachedSizes(
 int WhiteBoardMessageList::ByteSize() const {
   int total_size = 0;
 
-  // repeated .WhiteBoardMessage ShapeObject = 1;
+  if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    // optional string msgid = 1;
+    if (has_msgid()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::StringSize(
+          this->msgid());
+    }
+
+  }
+  // repeated .WhiteBoardMessage ShapeObject = 2;
   total_size += 1 * this->shapeobject_size();
   for (int i = 0; i < this->shapeobject_size(); i++) {
     total_size +=
@@ -681,6 +740,11 @@ void WhiteBoardMessageList::MergeFrom(const ::google::protobuf::Message& from) {
 void WhiteBoardMessageList::MergeFrom(const WhiteBoardMessageList& from) {
   GOOGLE_CHECK_NE(&from, this);
   shapeobject_.MergeFrom(from.shapeobject_);
+  if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    if (from.has_msgid()) {
+      set_msgid(from.msgid());
+    }
+  }
   mutable_unknown_fields()->MergeFrom(from.unknown_fields());
 }
 
@@ -703,6 +767,7 @@ bool WhiteBoardMessageList::IsInitialized() const {
 
 void WhiteBoardMessageList::Swap(WhiteBoardMessageList* other) {
   if (other != this) {
+    std::swap(msgid_, other->msgid_);
     shapeobject_.Swap(&other->shapeobject_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);

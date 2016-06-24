@@ -32,7 +32,8 @@ void protobuf_AssignDesc_RemoveShape_2eproto() {
       "RemoveShape.proto");
   GOOGLE_CHECK(file != NULL);
   RemoveShape_descriptor_ = file->message_type(0);
-  static const int RemoveShape_offsets_[1] = {
+  static const int RemoveShape_offsets_[2] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RemoveShape, msgid_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RemoveShape, shapeid_),
   };
   RemoveShape_reflection_ =
@@ -76,8 +77,8 @@ void protobuf_AddDesc_RemoveShape_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-    "\n\021RemoveShape.proto\"\036\n\013RemoveShape\022\017\n\007sh"
-    "apeID\030\001 \001(\r", 51);
+    "\n\021RemoveShape.proto\"-\n\013RemoveShape\022\r\n\005ms"
+    "gid\030\001 \001(\t\022\017\n\007shapeID\030\002 \001(\r", 66);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "RemoveShape.proto", &protobuf_RegisterTypes);
   RemoveShape::default_instance_ = new RemoveShape();
@@ -95,6 +96,7 @@ struct StaticDescriptorInitializer_RemoveShape_2eproto {
 // ===================================================================
 
 #ifndef _MSC_VER
+const int RemoveShape::kMsgidFieldNumber;
 const int RemoveShape::kShapeIDFieldNumber;
 #endif  // !_MSC_VER
 
@@ -115,7 +117,9 @@ RemoveShape::RemoveShape(const RemoveShape& from)
 }
 
 void RemoveShape::SharedCtor() {
+  ::google::protobuf::internal::GetEmptyString();
   _cached_size_ = 0;
+  msgid_ = const_cast< ::std::string*>(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   shapeid_ = 0u;
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
@@ -126,6 +130,9 @@ RemoveShape::~RemoveShape() {
 }
 
 void RemoveShape::SharedDtor() {
+  if (msgid_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+    delete msgid_;
+  }
   if (this != default_instance_) {
   }
 }
@@ -152,7 +159,14 @@ RemoveShape* RemoveShape::New() const {
 }
 
 void RemoveShape::Clear() {
-  shapeid_ = 0u;
+  if (_has_bits_[0 / 32] & 3) {
+    if (has_msgid()) {
+      if (msgid_ != &::google::protobuf::internal::GetEmptyStringAlreadyInited()) {
+        msgid_->clear();
+      }
+    }
+    shapeid_ = 0u;
+  }
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   mutable_unknown_fields()->Clear();
 }
@@ -167,9 +181,26 @@ bool RemoveShape::MergePartialFromCodedStream(
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional uint32 shapeID = 1;
+      // optional string msgid = 1;
       case 1: {
-        if (tag == 8) {
+        if (tag == 10) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_msgid()));
+          ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+            this->msgid().data(), this->msgid().length(),
+            ::google::protobuf::internal::WireFormat::PARSE,
+            "msgid");
+        } else {
+          goto handle_unusual;
+        }
+        if (input->ExpectTag(16)) goto parse_shapeID;
+        break;
+      }
+
+      // optional uint32 shapeID = 2;
+      case 2: {
+        if (tag == 16) {
+         parse_shapeID:
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
                  input, &shapeid_)));
@@ -206,9 +237,19 @@ failure:
 void RemoveShape::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
   // @@protoc_insertion_point(serialize_start:RemoveShape)
-  // optional uint32 shapeID = 1;
+  // optional string msgid = 1;
+  if (has_msgid()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+      this->msgid().data(), this->msgid().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
+      "msgid");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      1, this->msgid(), output);
+  }
+
+  // optional uint32 shapeID = 2;
   if (has_shapeid()) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt32(1, this->shapeid(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteUInt32(2, this->shapeid(), output);
   }
 
   if (!unknown_fields().empty()) {
@@ -221,9 +262,20 @@ void RemoveShape::SerializeWithCachedSizes(
 ::google::protobuf::uint8* RemoveShape::SerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
   // @@protoc_insertion_point(serialize_to_array_start:RemoveShape)
-  // optional uint32 shapeID = 1;
+  // optional string msgid = 1;
+  if (has_msgid()) {
+    ::google::protobuf::internal::WireFormat::VerifyUTF8StringNamedField(
+      this->msgid().data(), this->msgid().length(),
+      ::google::protobuf::internal::WireFormat::SERIALIZE,
+      "msgid");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        1, this->msgid(), target);
+  }
+
+  // optional uint32 shapeID = 2;
   if (has_shapeid()) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(1, this->shapeid(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(2, this->shapeid(), target);
   }
 
   if (!unknown_fields().empty()) {
@@ -238,7 +290,14 @@ int RemoveShape::ByteSize() const {
   int total_size = 0;
 
   if (_has_bits_[0 / 32] & (0xffu << (0 % 32))) {
-    // optional uint32 shapeID = 1;
+    // optional string msgid = 1;
+    if (has_msgid()) {
+      total_size += 1 +
+        ::google::protobuf::internal::WireFormatLite::StringSize(
+          this->msgid());
+    }
+
+    // optional uint32 shapeID = 2;
     if (has_shapeid()) {
       total_size += 1 +
         ::google::protobuf::internal::WireFormatLite::UInt32Size(
@@ -272,6 +331,9 @@ void RemoveShape::MergeFrom(const ::google::protobuf::Message& from) {
 void RemoveShape::MergeFrom(const RemoveShape& from) {
   GOOGLE_CHECK_NE(&from, this);
   if (from._has_bits_[0 / 32] & (0xffu << (0 % 32))) {
+    if (from.has_msgid()) {
+      set_msgid(from.msgid());
+    }
     if (from.has_shapeid()) {
       set_shapeid(from.shapeid());
     }
@@ -298,6 +360,7 @@ bool RemoveShape::IsInitialized() const {
 
 void RemoveShape::Swap(RemoveShape* other) {
   if (other != this) {
+    std::swap(msgid_, other->msgid_);
     std::swap(shapeid_, other->shapeid_);
     std::swap(_has_bits_[0], other->_has_bits_[0]);
     _unknown_fields_.Swap(&other->_unknown_fields_);
