@@ -116,33 +116,32 @@ int32_t Room::PlayerAddShape(PlayerSession* session,const ProtobufTranscode& req
 
 	uint32_t shape_id =0;
 	if(req_list.ParseFromString(request.GetBody())){
-		if(req_list.shapeobject_size()!= 1){
-			//视为非法操作
-			session->SendErrorToClient(Shape_Wrong_Operation,ProtoBuff_Add_Sharp,ERROR_ADD_SHAPE_TOO_MANY);	
-			return shape_id;
-		}
-		WhiteBoardMessage* req = req_list.mutable_shapeobject(0);
-		shape_id =  req->shapeid();	
-		std::string type = req->shapetype();
-		uint32_t datasize, propsize;
-		datasize = propsize = 0;
-		if (req->has_shapedata()) {
-			datasize += req->shapedata().size();
-		}
-	    if (req->has_shapeproperty()) {
-			propsize += req->shapeproperty().size();
-		}
-		auto it = shape_object_.find(shape_id);
-		if(it != shape_object_.end()){
-			it->second =  req->SerializeAsString();
-			LOG(INFO) <<"[Room::AddShape] change shape , id = " << shape_id << ", type = " << type << ", datasize = " << datasize << ", propsize = " << propsize;
-		}else{
-			//添加一个对象
-			shape_id = shape_max_id_;
-			req->set_shapeid(shape_id);
-			shape_object_.insert(std::make_pair(shape_id,req->SerializeAsString()));
-			shape_max_id_++;
-			LOG(INFO) << "[Room::AddShape] add shape,id = " << shape_id  << ", type = " << type << ", datasize = " << datasize << ", propsize = " << propsize ;
+
+		for(int i =0;i< req_list.shapeobject_size();i++){
+			WhiteBoardMessage* req = req_list.mutable_shapeobject(i);
+			shape_id =  req->shapeid();	
+			std::string type = req->shapetype();
+			uint32_t datasize, propsize;
+			datasize = propsize = 0;
+			if (req->has_shapedata()) {
+				datasize += req->shapedata().size();
+			}
+			if (req->has_shapeproperty()) {
+				propsize += req->shapeproperty().size();
+			}
+			auto it = shape_object_.find(shape_id);
+			if(it != shape_object_.end()){
+				it->second =  req->SerializeAsString();
+				LOG(INFO) <<"[Room::AddShape] change shape , id = " << shape_id << ", type = " << type << ", datasize = " << datasize << ", propsize = " << propsize;
+			}else{
+				//添加一个对象
+				shape_id = shape_max_id_;
+				req->set_shapeid(shape_id);
+				shape_object_.insert(std::make_pair(shape_id,req->SerializeAsString()));
+				shape_max_id_++;
+				LOG(INFO) << "[Room::AddShape] add shape,id = " << shape_id  << ", type = " << type << ", datasize = " << datasize << ", propsize = " << propsize ;
+			}
+		
 		}
 
 		BroadCast(ProtobufTranscode(ProtoBuff_Add_Sharp,req_list.SerializeAsString()));
